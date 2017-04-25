@@ -21,10 +21,10 @@ public class Ball : MonoBehaviour {
 			
 		if (Input.GetMouseButtonDown(0))
 		{
-			this.rigidbody2D.velocity = new Vector2(2f, 10f);
+			this.rigidbody2D.velocity = new Vector2(Random.Range(-.2f,.2f), 10f);
 			hasStarted = true;
 			var sbSpinner = GameObject.FindObjectOfType<SBSpinner>();
-			sbSpinner.isVisible = true;
+			sbSpinner.SetVisible(true);
 			paddle.playSonicBoom();
 			paddle.setStarted();
 		}
@@ -35,6 +35,9 @@ public class Ball : MonoBehaviour {
 	
 	void OnCollisionEnter2D(Collision2D collision)
 	{
+		var reboundRandomization = new Vector2(Mathf.Abs(this.rigidbody2D.velocity.x) < 5f ? this.rigidbody2D.velocity.x < 0 ? Random.Range(-0.2f, 0f) : Random.Range(0f, 0.2f) : 0f,
+		                                       Mathf.Abs(this.rigidbody2D.velocity.y) < 5f ? this.rigidbody2D.velocity.y < 0 ? Random.Range (-0.2f, 0f) : Random.Range(0f, 0.2f) : 0f); 
+		this.rigidbody2D.velocity += reboundRandomization;
 		if (hasStarted)
 			audio.Play();
 	}

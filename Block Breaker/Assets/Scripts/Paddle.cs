@@ -5,22 +5,39 @@ public class Paddle : MonoBehaviour {
 
 	public AudioClip[] audioSounds;
 	private bool isStarted;
+	private Ball m_ball;
+	public bool isAutoPlay = false;
 
 	// Use this for initialization
 	void Start () {
+		m_ball = FindObjectOfType<Ball>();
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (isAutoPlay && isStarted)
+		{
+			AutoPlay ();
+        } 
+		else
+		    MoveWithMouse();
 
 	
-	var mousePosInBlocks = Input.mousePosition.x / Screen.width * 16;
+	}
 	
-		var paddlePosition = new Vector3(Mathf.Clamp(mousePosInBlocks, 1f, 15f ), this.transform.position.y, this.transform.position.z);
+	void AutoPlay()
+	{
+		var paddlePosition = new Vector3(m_ball.transform.position.x,this.transform.position.y, this.transform.position.z);
+		this.transform.position = paddlePosition;
 	
-	this.transform.position = paddlePosition;
+	}
 	
+	void MoveWithMouse()
+	{
+		var mousePosInBlocks = Input.mousePosition.x / Screen.width * 16;
+		var paddlePosition = new Vector3(Mathf.Clamp(mousePosInBlocks, 1.2f, 14.8f ), this.transform.position.y, this.transform.position.z);
+		this.transform.position = paddlePosition;
 	}
 	
 	void OnCollisionEnter2D(Collision2D collision)

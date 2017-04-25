@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MusicPlayer : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class MusicPlayer : MonoBehaviour {
 	void Awake()
 	{
 		Debug.Log("Music awake" + GetInstanceID());
+			
 		if (m_instance == null)
 		{
 			m_instance = this;
@@ -21,7 +23,8 @@ public class MusicPlayer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Debug.Log("Music start" + GetInstanceID());
-
+		
+		
 	}
 	
 	// Update is called once per frame

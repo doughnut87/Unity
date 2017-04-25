@@ -10,7 +10,7 @@ public class SBSpinner : MonoBehaviour {
 	
 	public Sprite[] SBAnimation;
 	
-	public bool isVisible = false;
+	private bool m_isVisible = false;
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +25,7 @@ public class SBSpinner : MonoBehaviour {
 		if (m_spriteNum > SBAnimation.Length - 1 )
 			m_spriteNum = 0;
 		
-		m_spriteRenderer.sprite = isVisible ? SBAnimation[m_spriteNum] : null;
+		m_spriteRenderer.sprite = m_isVisible ? SBAnimation[m_spriteNum] : null;
 		
 		m_spriteNum++;
 		
@@ -39,5 +39,10 @@ public class SBSpinner : MonoBehaviour {
 //			m_spriteRenderer.sprite = null;
 //		 }
 		
+	}
+
+	public void SetVisible (bool isVisible)
+	{
+		m_isVisible = isVisible;
 	}
 }

@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour {
 	
 	public void LoadLevel(string name)
 	{
+		Brick.breakableCount = 0; // need to reset
 		if (string.Compare(name, "start",System.StringComparison.OrdinalIgnoreCase)== 0)
 		{
 			m_guess = 0;
@@ -51,6 +52,7 @@ public class LevelManager : MonoBehaviour {
 	 
 	public void LoadNextLevel ()
 	{
+		Brick.breakableCount = 0; // need to reset
 		Application.LoadLevel(Application.loadedLevel + 1);
 	}
 
