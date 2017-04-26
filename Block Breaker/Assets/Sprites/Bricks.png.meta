@@ -7,6 +7,7 @@ TextureImporter:
     21300004: Rigth Brick
     21300006: 1 Hit
     21300008: 2 Hits
+    21300010: Full Brick
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -48,15 +49,15 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: 0 Hits
+    - name: Full Brick
       rect:
         serializedVersion: 2
         x: 0
         y: 127
         width: 128
         height: 41
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Left Brick
       rect:
@@ -85,8 +86,8 @@ TextureImporter:
         y: 43
         width: 128
         height: 41
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: 2 Hits
       rect:
@@ -95,8 +96,8 @@ TextureImporter:
         y: 1
         width: 128
         height: 41
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

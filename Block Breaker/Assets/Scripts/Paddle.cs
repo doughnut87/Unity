@@ -28,7 +28,7 @@ public class Paddle : MonoBehaviour {
 	
 	void AutoPlay()
 	{
-		var paddlePosition = new Vector3(m_ball.transform.position.x,this.transform.position.y, this.transform.position.z);
+		var paddlePosition = new Vector3(Mathf.Clamp(m_ball.transform.position.x, 1.2f, 14.8f ),this.transform.position.y, this.transform.position.z);
 		this.transform.position = paddlePosition;
 	
 	}
@@ -45,13 +45,13 @@ public class Paddle : MonoBehaviour {
 		if (!isStarted)
 			return;
 		if (audioSounds.Length > 0)
-			AudioSource.PlayClipAtPoint(audioSounds[Random.Range(0, audioSounds.Length)], this.transform.position);
+			AudioSource.PlayClipAtPoint(audioSounds[Random.Range(0, audioSounds.Length)], Camera.main.transform.position);
 	}
 
 	public void playSonicBoom ()
 	{
 		if (audioSounds.Length > 0)
-			AudioSource.PlayClipAtPoint(audioSounds[0], this.transform.position);
+			AudioSource.PlayClipAtPoint(audioSounds[0], Camera.main.transform.position);
 	}
 
 	public void setStarted ()

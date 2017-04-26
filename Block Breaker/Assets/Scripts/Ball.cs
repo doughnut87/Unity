@@ -35,9 +35,14 @@ public class Ball : MonoBehaviour {
 	
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		var reboundRandomization = new Vector2(Mathf.Abs(this.rigidbody2D.velocity.x) < 5f ? this.rigidbody2D.velocity.x < 0 ? Random.Range(-0.2f, 0f) : Random.Range(0f, 0.2f) : 0f,
-		                                       Mathf.Abs(this.rigidbody2D.velocity.y) < 5f ? this.rigidbody2D.velocity.y < 0 ? Random.Range (-0.2f, 0f) : Random.Range(0f, 0.2f) : 0f); 
-		this.rigidbody2D.velocity += reboundRandomization;
+	    // add some randomness but not when its going too fast.
+		if (Mathf.Abs(this.rigidbody2D.velocity.x) +  Mathf.Abs(this.rigidbody2D.velocity.y) < 10f)
+		{
+			var reboundRandomization = new Vector2(this.rigidbody2D.velocity.x < 0 ? Random.Range(-0.2f, 0f) : Random.Range(0f, 0.2f),
+		                                           this.rigidbody2D.velocity.y < 0 ? Random.Range (-0.2f, 0f) : Random.Range(0f, 0.2f)); 
+			this.rigidbody2D.velocity += reboundRandomization;
+		}
+		
 		if (hasStarted)
 			audio.Play();
 	}

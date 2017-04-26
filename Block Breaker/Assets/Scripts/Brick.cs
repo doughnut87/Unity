@@ -9,6 +9,7 @@ public class Brick : MonoBehaviour {
 	private bool isBreakable;
 	private LevelManager m_levelManager;
 	public AudioClip[] hitSounds;
+	public GameObject smoke;
 
 	// Use this for initialization
 	void Start () {
@@ -29,7 +30,7 @@ public class Brick : MonoBehaviour {
 	void OnCollisionExit2D(Collision2D collision)
 	{
 		if (hitSounds.Length > 0)
-			AudioSource.PlayClipAtPoint (hitSounds[Random.Range(0,hitSounds.Length)], transform.position);
+			AudioSource.PlayClipAtPoint (hitSounds[Random.Range(0,hitSounds.Length)], Camera.main.transform.position);
 			
 		if (!isBreakable)
 		    return;
@@ -48,7 +49,9 @@ public class Brick : MonoBehaviour {
 			print ("Brick should die");
 			breakableCount--;
 			m_levelManager.BrickDestroyed();
-			Destroy(gameObject);		
+			DoSmokePuff();
+			Destroy(gameObject);
+		
 		}
 		// Damage the brick
 		else
@@ -60,5 +63,11 @@ public class Brick : MonoBehaviour {
 				this.GetComponent<SpriteRenderer>().sprite = sprite;
 			}
 		}	
+	}
+
+	void DoSmokePuff ()
+	{
+		GameObject smokepuff = Instantiate(smoke, this.transform.position, Quaternion.identity) as GameObject;
+		smokepuff.particleSystem.startColor = this.GetComponent<SpriteRenderer>().color;
 	}
 }
