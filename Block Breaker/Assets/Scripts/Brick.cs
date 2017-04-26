@@ -24,8 +24,8 @@ public class Brick : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+
+    }
 	
 	void OnCollisionExit2D(Collision2D collision)
 	{
@@ -68,6 +68,6 @@ public class Brick : MonoBehaviour {
 	void DoSmokePuff ()
 	{
 		GameObject smokepuff = Instantiate(smoke, this.transform.position, Quaternion.identity) as GameObject;
-		smokepuff.particleSystem.startColor = this.GetComponent<SpriteRenderer>().color;
+		smokepuff.GetComponent<ParticleSystem>().startColor = this.GetComponent<SpriteRenderer>().color;
 	}
 }

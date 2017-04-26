@@ -23,8 +23,13 @@ public class Paddle : MonoBehaviour {
 		else
 		    MoveWithMouse();
 
-	
-	}
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            var levelManager = GameObject.FindObjectOfType<LevelManager>();
+            levelManager.LoadNextLevel();
+        }
+
+    }
 	
 	void AutoPlay()
 	{
